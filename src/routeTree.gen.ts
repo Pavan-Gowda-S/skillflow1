@@ -10,33 +10,137 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExecutionsRouteImport } from './routes/executions'
+import { Route as GovernanceRouteImport } from './routes/governance'
+import { Route as KnowledgeRouteImport } from './routes/knowledge'
+import { Route as McpToolsRouteImport } from './routes/mcp-tools'
+import { Route as PlaygroundRouteImport } from './routes/playground'
+import { Route as SkillsRouteImport } from './routes/skills'
+import { Route as ExecutionsIndexRouteImport } from './routes/executions.index'
+import { Route as ExecutionsExecutionIdRouteImport } from './routes/executions.$executionId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExecutionsRoute = ExecutionsRouteImport.update({
+  id: '/executions',
+  path: '/executions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernanceRoute = GovernanceRouteImport.update({
+  id: '/governance',
+  path: '/governance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KnowledgeRoute = KnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const McpToolsRoute = McpToolsRouteImport.update({
+  id: '/mcp-tools',
+  path: '/mcp-tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SkillsRoute = SkillsRouteImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExecutionsIndexRoute = ExecutionsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ExecutionsRoute,
+} as any)
+const ExecutionsExecutionIdRoute = ExecutionsExecutionIdRouteImport.update({
+  id: '/$executionId',
+  path: '/$executionId',
+  getParentRoute: () => ExecutionsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/executions': typeof ExecutionsRouteWithChildren
+  '/governance': typeof GovernanceRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/mcp-tools': typeof McpToolsRoute
+  '/playground': typeof PlaygroundRoute
+  '/skills': typeof SkillsRoute
+  '/executions/$executionId': typeof ExecutionsExecutionIdRoute
+  '/executions/': typeof ExecutionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/governance': typeof GovernanceRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/mcp-tools': typeof McpToolsRoute
+  '/playground': typeof PlaygroundRoute
+  '/skills': typeof SkillsRoute
+  '/executions/$executionId': typeof ExecutionsExecutionIdRoute
+  '/executions': typeof ExecutionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/executions': typeof ExecutionsRouteWithChildren
+  '/governance': typeof GovernanceRoute
+  '/knowledge': typeof KnowledgeRoute
+  '/mcp-tools': typeof McpToolsRoute
+  '/playground': typeof PlaygroundRoute
+  '/skills': typeof SkillsRoute
+  '/executions/$executionId': typeof ExecutionsExecutionIdRoute
+  '/executions/': typeof ExecutionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/executions'
+    | '/governance'
+    | '/knowledge'
+    | '/mcp-tools'
+    | '/playground'
+    | '/skills'
+    | '/executions/$executionId'
+    | '/executions/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/governance'
+    | '/knowledge'
+    | '/mcp-tools'
+    | '/playground'
+    | '/skills'
+    | '/executions/$executionId'
+    | '/executions'
+  id:
+    | '__root__'
+    | '/'
+    | '/executions'
+    | '/governance'
+    | '/knowledge'
+    | '/mcp-tools'
+    | '/playground'
+    | '/skills'
+    | '/executions/$executionId'
+    | '/executions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExecutionsRoute: typeof ExecutionsRouteWithChildren
+  GovernanceRoute: typeof GovernanceRoute
+  KnowledgeRoute: typeof KnowledgeRoute
+  McpToolsRoute: typeof McpToolsRoute
+  PlaygroundRoute: typeof PlaygroundRoute
+  SkillsRoute: typeof SkillsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +152,87 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/executions': {
+      id: '/executions'
+      path: '/executions'
+      fullPath: '/executions'
+      preLoaderRoute: typeof ExecutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/governance': {
+      id: '/governance'
+      path: '/governance'
+      fullPath: '/governance'
+      preLoaderRoute: typeof GovernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/knowledge': {
+      id: '/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof KnowledgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mcp-tools': {
+      id: '/mcp-tools'
+      path: '/mcp-tools'
+      fullPath: '/mcp-tools'
+      preLoaderRoute: typeof McpToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/skills': {
+      id: '/skills'
+      path: '/skills'
+      fullPath: '/skills'
+      preLoaderRoute: typeof SkillsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/executions/': {
+      id: '/executions/'
+      path: '/'
+      fullPath: '/executions/'
+      preLoaderRoute: typeof ExecutionsIndexRouteImport
+      parentRoute: typeof ExecutionsRoute
+    }
+    '/executions/$executionId': {
+      id: '/executions/$executionId'
+      path: '/$executionId'
+      fullPath: '/executions/$executionId'
+      preLoaderRoute: typeof ExecutionsExecutionIdRouteImport
+      parentRoute: typeof ExecutionsRoute
+    }
   }
 }
 
+interface ExecutionsRouteChildren {
+  ExecutionsExecutionIdRoute: typeof ExecutionsExecutionIdRoute
+  ExecutionsIndexRoute: typeof ExecutionsIndexRoute
+}
+
+const ExecutionsRouteChildren: ExecutionsRouteChildren = {
+  ExecutionsExecutionIdRoute: ExecutionsExecutionIdRoute,
+  ExecutionsIndexRoute: ExecutionsIndexRoute,
+}
+
+const ExecutionsRouteWithChildren = ExecutionsRoute._addFileChildren(
+  ExecutionsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExecutionsRoute: ExecutionsRouteWithChildren,
+  GovernanceRoute: GovernanceRoute,
+  KnowledgeRoute: KnowledgeRoute,
+  McpToolsRoute: McpToolsRoute,
+  PlaygroundRoute: PlaygroundRoute,
+  SkillsRoute: SkillsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
