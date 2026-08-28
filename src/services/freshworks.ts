@@ -24,7 +24,7 @@ export interface CallEnvelope<T> {
 export const FreshworksService = {
   async lookupCustomer(customerId: string): Promise<CallEnvelope<Partial<Customer>>> {
     await delay(420);
-    const customer = customers.find((c) => c.id === customerId) ?? customers[0];
+    const customer = customers.find((c) => c.id === customerId) ?? customers[0]!;
     return {
       tool: "customer.lookup",
       system: "Freshworks",

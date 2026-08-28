@@ -17,7 +17,6 @@ export async function searchKnowledge(
     .filter(
       (d) =>
         query.trim().length === 0 ||
-        d.title.toLowerCase().includes(query.toLowerCase().split(" ")[0]) ||
         true,
     )
     .slice(0, topK);
