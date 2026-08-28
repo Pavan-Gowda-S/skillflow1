@@ -9,7 +9,7 @@ export function CustomerTicketPanel({
   tickets,
   relatedTickets,
 }: {
-  customer?: Partial<Customer>;
+  customer?: Partial<Customer> | undefined;
   tickets: Ticket[];
   relatedTickets: number;
 }) {
@@ -100,7 +100,7 @@ export function IncidentPanel({
   pattern,
 }: {
   matches: IncidentMatch[];
-  pattern?: { pattern: string; confidence: string };
+  pattern?: { pattern: string; confidence: string } | undefined;
 }) {
   return (
     <Panel
