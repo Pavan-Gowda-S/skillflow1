@@ -13,13 +13,8 @@ export async function searchKnowledge(
   topK = 4,
 ): Promise<CallEnvelope<{ documents: KnowledgeDoc[] }>> {
   await delay(740);
-  const documents = knowledgeDocs
-    .filter(
-      (d) =>
-        query.trim().length === 0 ||
-        true,
-    )
-    .slice(0, topK);
+  const documents = knowledgeDocs.slice(0, topK);
+
   return {
     tool: "knowledge.search",
     system: "Knowledge Hub",
